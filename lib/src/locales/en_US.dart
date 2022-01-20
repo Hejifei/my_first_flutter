@@ -9,4 +9,5 @@ final Map<String, String> enUs = {
   'hot': 'Hot',
   'find': 'Find',
   'mine': 'Mine',
+  'login': 'Login',
 };

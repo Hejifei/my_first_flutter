@@ -2,10 +2,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import '../../locales/index.dart';
-
 import '../../components/bottom_Navigation_bar.dart';
 import './home_controller.dart';
+import '../stateless_demo.dart';
 
 class Other extends StatelessWidget {
   // 你可以让Get找到一个正在被其他页面使用的Controller，并将它返回给你。
@@ -28,7 +27,8 @@ class HomePage extends GetView<HomeController> {
         appBar: AppBar(
           title: Text('home'.tr),
         ),
-        bottomNavigationBar: BottomNavigationBarComponent(selectIndex: 0),
+        bottomNavigationBar: const BottomNavigationBarComponent(selectIndex: 0),
+        drawer: const Drawer(),
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -49,7 +49,7 @@ class HomePage extends GetView<HomeController> {
                 return Text('value 2 -> ${_.count}');
               },
             ),
-            Divider(),
+            const Divider(),
 
             GetX<HomeController>(
               init: controller,
@@ -63,13 +63,13 @@ class HomePage extends GetView<HomeController> {
                       onPressed: () {
                         _.add();
                       },
-                      child: Text('count1'),
+                      child: const Text('count1'),
                     )
                   ],
                 );
               },
             ),
-            Divider(),
+            const Divider(),
 
             // count2
             GetX<HomeController>(
@@ -80,24 +80,30 @@ class HomePage extends GetView<HomeController> {
                 return Text('value 4 -> ${_.count2}');
               },
             ),
-            Divider(),
+            const Divider(),
 
             // 按钮
             ElevatedButton(
               onPressed: () {
                 controller.add();
               },
-              child: Text('count1'),
+              child: const Text('count1'),
             ),
 
             ElevatedButton(
               onPressed: () {
                 controller.add2();
               },
-              child: Text('count2'),
+              child: const Text('count2'),
             ),
 
             Other(),
+
+            const Divider(),
+
+            const CounterWidget(
+              initValue: 0,
+            ),
           ],
         ));
   }

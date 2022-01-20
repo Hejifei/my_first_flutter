@@ -9,4 +9,5 @@ final Map<String, String> zhCn = {
   'hot': '热点',
   'find': '发现',
   'mine': '我',
+  'login': '登录',
 };

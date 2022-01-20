@@ -5,18 +5,12 @@ import 'dart:ui' as ui;
 
 import '../../layout/index.dart';
 import '../../layout/material_components.dart';
-import '../../stateful_demo.dart';
-import '../../shopping_list_item.dart';
+import '../shopping_list_item.dart';
 import '../../layout/persistent_labels.dart';
-import '../../views/settings.dart';
-
-import '../../locales/index.dart';
-
-import '../../router/app_pages.dart';
-
+import '../setting/setting_view.dart';
 import '../../components/bottom_Navigation_bar.dart';
-
 import './index_controller.dart';
+import '../shopping_list_item.dart';
 
 class Other extends StatelessWidget {
   // 你可以让Get找到一个正在被其他页面使用的Controller，并将它返回给你。
@@ -57,7 +51,7 @@ class IndexPage extends GetView<IndexController> {
           IconButton(icon: const Icon(Icons.share), onPressed: () {}),
         ],
       ),
-      drawer: const SettingPage(),
+      drawer: SettingPage(),
       bottomNavigationBar: BottomNavigationBarComponent(selectIndex: 1),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
@@ -82,20 +76,6 @@ class IndexPage extends GetView<IndexController> {
                 context,
                 new MaterialPageRoute(
                   builder: (context) => new SecondScreen(),
-                ),
-              );
-            },
-          ),
-
-          const Divider(),
-
-          new RaisedButton(
-            child: const Text('Go to Counter'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                new MaterialPageRoute(
-                  builder: (context) => new Counter(),
                 ),
               );
             },

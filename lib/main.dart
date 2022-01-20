@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/views/Index/index_binding.dart';
 import 'package:get/get.dart';
-import 'package:myapp/views/Index/index_view.dart';
-import 'package:myapp/locales/index.dart';
-import 'package:myapp/router/app_pages.dart';
+import 'package:myapp/src/views/Index/index_binding.dart';
+import 'package:myapp/src/views/Index/index_view.dart';
+import 'package:myapp/src/locales/index.dart';
+import 'package:myapp/src/router/app_pages.dart';
 
 void main() => runApp(MyApp());
 

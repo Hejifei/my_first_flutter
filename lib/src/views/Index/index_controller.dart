@@ -13,15 +13,15 @@ class IndexController extends GetxController {
   // int get id => _id.value;
 
   RxInt _bottomTabActiveIndex = RxInt(0);
-  set bottomTabActiveIndex(int value) => {
-        if (value is int)
-          {
-            _bottomTabActiveIndex.value = value,
-            box.write('bottomTabActiveIndex', value),
-          }
-        else
-          {_bottomTabActiveIndex.value = 0}
-      };
+  set bottomTabActiveIndex(int value) {
+    if (value is int) {
+      _bottomTabActiveIndex.value = value;
+      box.write('bottomTabActiveIndex', value);
+    } else {
+      _bottomTabActiveIndex.value = 0;
+    }
+  }
+
   int get bottomTabActiveIndex => _bottomTabActiveIndex.value;
 
   increment() => count++;
