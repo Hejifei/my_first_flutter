@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
+import 'dart:convert';
 import 'package:myapp/src/common/index.dart';
 import 'package:myapp/src/router/app_pages.dart';
 import 'package:myapp/src/utils/local_storage.dart';
 
-String? getUserToken() {
-  return LocalStorage().getJSON(LOCAL_STORAGE_USER_TOKEN_KEY);
+getUserToken() {
+  var token = LocalStorage().getJSON(LOCAL_STORAGE_USER_TOKEN_KEY);
+  return token != null ? jsonEncode(token) : null;
 }
 
 bool checkIsLogin() {

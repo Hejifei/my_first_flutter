@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'dart:convert';
@@ -29,23 +30,27 @@ class Request {
 
     dio = Dio(options);
 
+    print(dio);
     // 添加拦截器
     dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
-      // Options requestOptions = options ?? Options();
       options.headers = getRequestHeader();
-      print(
-        'request拦截器',
-      );
-      // var headers = getRequestHeader();
-      // 在请求被发送之前做一些预处理
       return handler.next(options); //continue
     }, onResponse: (response, handler) {
-      print('response');
+      var responseString = response.toString();
+      var responseMap = jsonDecode(responseString);
+      var code = responseMap['code'];
+      var msg = responseMap['msg'];
+      print(msg);
+      print('response--------');
+      if (code != 0) {
+        throw ErrorEntity(code: code, message: msg);
+      }
       // 在返回响应数据之前做一些预处理
       return handler.next(response);
     }, onError: (DioError e, handler) {
-      ErrorEntity error = createErrorEntity(e);
-      EasyLoading.showInfo(error.message.toString());
+      ErrorEntity error =
+          (e is ErrorEntity ? e : createErrorEntity(e)) as ErrorEntity;
+      // EasyLoading.showInfo(error.message.toString());
 
       switch (error.code) {
         case 401:
@@ -53,9 +58,11 @@ class Request {
           break;
         default:
       }
-      return handler.next(e);
+      return handler.next(error as DioError);
     }));
   }
+
+  get message => null;
 
   Map<String, dynamic> getRequestHeader() {
     var headers;
@@ -74,18 +81,17 @@ class Request {
     return headers;
   }
 
-  parseRequestOption(Options? options) {
-    Options requestOptions = options ?? Options();
-    requestOptions.headers = getRequestHeader();
-    print('parseRequestOption');
-    return requestOptions;
+  getResponseData(Response<dynamic> response) {
+    var responseString = response.toString();
+    var data = jsonDecode(responseString)['data'];
+    return data;
   }
 
   /// restful get 操作
-  Future get(String path, {dynamic params, Options? options}) async {
+  get(String path, {dynamic params, Options? options}) async {
     var response = await dio.get(path,
         queryParameters: params, options: options, cancelToken: cancelToken);
-    return response.data;
+    return getResponseData(response);
   }
 
   doRequest() async {}
@@ -93,26 +99,25 @@ class Request {
   Future post(String path, {dynamic params, Options? options}) async {
     var response = await dio.post(path,
         data: params, options: options, cancelToken: cancelToken);
-    return response.data;
+    return getResponseData(response);
   }
 
   Future put(String path, {dynamic params, Options? options}) async {
     var response = await dio.put(path,
         data: params, options: options, cancelToken: cancelToken);
-    return response.data;
+    return getResponseData(response);
   }
 
   Future patch(String path, {dynamic params, Options? options}) async {
     var response = await dio.patch(path,
         data: params, options: options, cancelToken: cancelToken);
-
-    return response.data;
+    return getResponseData(response);
   }
 
   Future delete(String path, {dynamic params, Options? options}) async {
     var response = await dio.delete(path,
         data: params, options: options, cancelToken: cancelToken);
-    return response.data;
+    return getResponseData(response);
   }
 
   Future postForm(String path, {dynamic params, Options? options}) async {
@@ -120,7 +125,7 @@ class Request {
         data: FormData.fromMap(params),
         options: options,
         cancelToken: cancelToken);
-    return response.data;
+    return getResponseData(response);
   }
 
   /*
@@ -230,6 +235,7 @@ class ErrorEntity implements Exception {
 
   String toString() {
     if (message == null) return "Exception";
-    return "Exception: code $code, $message";
+    // return "Exception: code $code, $message";
+    return "$message|";
   }
 }

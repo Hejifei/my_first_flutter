@@ -1,13 +1,16 @@
-import 'package:get/get.dart';
-import 'dart:io';
-import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:myapp/src/common/index.dart';
-import 'package:myapp/src/utils/request.dart';
+import 'package:myapp/src/utils/dio_util/dio_method.dart';
+import 'package:myapp/src/utils/dio_util/dio_response.dart';
+import 'package:myapp/src/utils/dio_util/dio_util.dart';
 import 'package:myapp/src/utils/index.dart';
-import 'package:myapp/src/views/login/login_model.dart';
+import 'package:myapp/src/models/login.dart';
 
 class LoginController extends GetxController {
+  CancelToken _cancelToken = CancelToken();
+
   final _userName = '18013488032'.obs;
   set userName(value) {
     _userName.value = value;
@@ -23,48 +26,32 @@ class LoginController extends GetxController {
   get password => _password.value;
 
   void login() async {
-    //创建Dio对象
-    Dio dio = new Dio();
-
-    ///请求地址 获取用户列表
-    String url = "http://192.168.1.119:8700/api/Account/CrossLogin";
-
-    ///发起get请求
-    // var response = await dio.post(
-    //   url,
-    //   data: {
-    //     'account': userName,
-    //     'password': password,
-    //   },
-    //   options: Options(headers: {
-    //     'token': jsonEncode({
-    //       "uid": "",
-    //       "timestamp": 0,
-    //       "token": "",
-    //       "client": "web",
-    //       "version": "",
-    //       "language": "zh",
-    //     }),
-    //   }),
-    // );
-    // // dio.post(url, data: {
-    // //   'account': userName,
-    // //   'password': password,
-    // // });
-
-    // ///响应数据
-    // var data = response.data;
-    var data = await Request().post('Account/CrossLogin', params: {
-      'account': userName,
-      'password': password,
-    });
-    var loginInfo = Login.fromJson(data);
-    print(data['data']['token']);
-    print(loginInfo.token);
-    print('---------------------');
-    // var token = data.token;
-    // LocalStorage().setJSON(LOCAL_STORAGE_USER_TOKEN_KEY, token);
-    // print(jsonEncode(data));
+    try {
+      // await Request().post('Account/CrossLogin', params: {
+      //   'account': userName,
+      //   'password': password,
+      // });
+      var data = await DioUtil().request(
+        'Account/CrossLogin',
+        method: DioMethod.post,
+        data: {
+          'account': userName,
+          'password': password,
+        },
+      );
+      print(data);
+      var loginInfo = Login.fromJson(data);
+      var token = loginInfo.token;
+      LocalStorage().setJSON(LOCAL_STORAGE_USER_TOKEN_KEY, token);
+      EasyLoading.showSuccess('登录成功!');
+    } on ErrorEntity catch (error) {
+      print('on');
+      EasyLoading.showInfo(error.message.toString());
+    } catch (err) {
+      print('catch');
+      print(err);
+      EasyLoading.showError(err.toString());
+    }
   }
 
   @override
