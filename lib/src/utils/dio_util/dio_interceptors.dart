@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:myapp/src/utils/dio_util/dio_response.dart';
 import 'package:myapp/src/utils/index.dart';
 
-// class MyResponse<T> {
-//   late int code;
-//   late String msg;
-//   late T data;
-// }
+class MyResponse<T> {
+  late int code;
+  late String msg;
+  late T data;
+}
 
 class DioInterceptors extends Interceptor {
   @override
@@ -34,8 +34,6 @@ class DioInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
-    print('onResponse 拦截器');
-    print(response);
     // 请求成功是对数据做基本处理
     // if (response.statusCode == 200) {
     //   response.data =
@@ -43,13 +41,6 @@ class DioInterceptors extends Interceptor {
     // } else {
     //   response.data =
     //       DioResponse(code: 1, message: "请求失败啦", data: response.data);
-    // }
-    // response.data = response.data;
-    // var res = response as MyResponse;
-    // print('${res.msg}');
-    // print('xxxxx');
-    // if (res.code != 0) {
-    //   // throw res.msg;
     // }
 
     // // 对某些单独的url返回数据做特殊处理

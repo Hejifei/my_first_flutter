@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/src/common/index.dart';
 import 'package:myapp/src/router/app_pages.dart';
+import 'package:myapp/src/utils/index.dart';
 import 'package:myapp/src/views/setting/setting_controller.dart';
 
 class SettingPage extends GetView<SettingController> {
@@ -53,6 +55,7 @@ class SettingPage extends GetView<SettingController> {
 
             ElevatedButton(
               onPressed: () {
+                LocalStorage().remove(LOCAL_STORAGE_USER_TOKEN_KEY);
                 Get.offAllNamed(AppRoutes.Login);
               },
               child: const Text('退出登录'),

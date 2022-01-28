@@ -1,23 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 
 import '../../components/bottom_Navigation_bar.dart';
 import './home_controller.dart';
-import '../stateless_demo.dart';
-
-class Other extends StatelessWidget {
-  // 你可以让Get找到一个正在被其他页面使用的Controller，并将它返回给你。
-  final HomeController c = Get.find();
-
-  @override
-  Widget build(context) {
-    // 访问更新后的计数变量
-    return Obx(() => Text("${c.count}"));
-  }
-}
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
+
   // final controller = HomeController();
 
   @override
@@ -95,14 +84,6 @@ class HomePage extends GetView<HomeController> {
                 controller.add2();
               },
               child: const Text('count2'),
-            ),
-
-            Other(),
-
-            const Divider(),
-
-            const CounterWidget(
-              initValue: 0,
             ),
           ],
         ));

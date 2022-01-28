@@ -141,10 +141,12 @@ class DioUtil {
         // onSendProgress: onSendProgress,
         // onReceiveProgress: onReceiveProgress
       );
-      print('response');
-      print(response);
-
-      return response.data;
+      var res = response.data;
+      var code = res['code'];
+      if (code != 0) {
+        throw res['msg'];
+      }
+      return res['data'];
     } on DioError catch (e) {
       throw e;
     }
