@@ -43,5 +43,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+
+	<key>NSCameraUsageDescription</key>
+	<string>获取相机权限使用扫一扫功能</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YES</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>获取麦克风权限使用拍视频功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>获取相册权限使用选择照片功能</string>
 </dict>
 </plist>

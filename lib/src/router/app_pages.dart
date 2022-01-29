@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:myapp/src/views/Index/index_binding.dart';
-import 'package:myapp/src/views/home/home.binding.dart';
+import 'package:myapp/src/views/home/home_binding.dart';
 
 import 'package:myapp/src/views/home/home_view.dart';
+import 'package:myapp/src/views/home/scanner/scanner_binding.dart';
+import 'package:myapp/src/views/home/scanner/scanner_view.dart';
 import 'package:myapp/src/views/login/login_binding.dart';
 import 'package:myapp/src/views/mine/mine_binding.dart';
 import 'package:myapp/src/views/mine/mine_view.dart';
@@ -27,6 +29,12 @@ class AppPages {
       name: AppRoutes.Home,
       page: () => HomePage(),
       binding: HomeBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: AppRoutes.Scanner,
+      page: () => const ScannerPage(),
+      binding: ScannerBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

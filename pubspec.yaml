@@ -36,6 +36,10 @@ dependencies:
   shared_preferences: 2.0.12
   flutter_easyloading: 3.0.3
   json_annotation: ^4.3.0
+  # 扫码
+  scan: 1.6.0
+  # 支持相册图片选择及拍照功能
+  images_picker: ^1.2.10
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/src/router/app_pages.dart';
 
 import '../../components/bottom_Navigation_bar.dart';
 import './home_controller.dart';
@@ -7,14 +8,19 @@ import './home_controller.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
-  // final controller = HomeController();
-
   @override
   Widget build(context) {
     // final controller = Get.put(HomeController());
     return Scaffold(
         appBar: AppBar(
           title: Text('home'.tr),
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.qr_code_scanner),
+                onPressed: () {
+                  Get.offAllNamed(AppRoutes.Scanner);
+                }),
+          ],
         ),
         bottomNavigationBar: const BottomNavigationBarComponent(selectIndex: 0),
         drawer: const Drawer(),
