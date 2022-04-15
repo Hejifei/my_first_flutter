@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:myapp/src/views/Index/index_binding.dart';
+import 'package:myapp/src/views/device_list/device_list_binding.dart';
+import 'package:myapp/src/views/device_list/device_list_view.dart';
 import 'package:myapp/src/views/home/home_binding.dart';
 
 import 'package:myapp/src/views/home/home_view.dart';
@@ -47,6 +49,12 @@ class AppPages {
       name: '/mine',
       page: () => MinePage(),
       binding: MineBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: AppRoutes.Device_List,
+      page: () => const DeviceListPage(),
+      binding: DeviceListBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

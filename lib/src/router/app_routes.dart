@@ -7,6 +7,7 @@ abstract class AppRoutes {
   static const Login = '/login';
   static const Settings = '/settings';
   static const Mine = '/mine';
+  static const Device_List = '/device_list';
 
   static const NotFound = '/not_found';
 

@@ -1,3 +1,5 @@
+import 'package:myapp/src/locales/device_list/en_US.dart';
+
 final Map<String, String> enUs = {
   'hello': 'Hello World',
   'language_selected': 'English',
@@ -10,4 +12,5 @@ final Map<String, String> enUs = {
   'find': 'Find',
   'mine': 'Mine',
   'login': 'Login',
+  ...deviceListEnUs,
 };

@@ -1,3 +1,5 @@
+import 'package:myapp/src/locales/device_list/zh_CN.dart';
+
 final Map<String, String> zhCn = {
   'hello': '你好 世界',
   'language_selected': '英语',
@@ -10,4 +12,5 @@ final Map<String, String> zhCn = {
   'find': '发现',
   'mine': '我',
   'login': '登录',
+  ...deviceListZhCn,
 };

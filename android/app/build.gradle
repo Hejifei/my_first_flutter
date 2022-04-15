@@ -54,6 +54,13 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // resConfigs "zh", "zh-rCN"
+
+        // ndk {
+        //     abiFilters "armeabi-v7a"
+        //     // abiFilters 'armeabi','x86', 'armeabi-v7a'
+        //     // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        // }
     }
     //  打包放开
     // signingConfigs {
@@ -67,10 +74,16 @@ android {
 
     buildTypes {
         release {
+            // minifyEnabled true // 开启混淆
+            // shrinkResources true // 去除无用资源 与lint不同
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+        // debug {
+        //     minifyEnabled true // 开启混淆
+        //     shrinkResources true // 去除无用资源 与lint不同
+        // }
     }
 }
 

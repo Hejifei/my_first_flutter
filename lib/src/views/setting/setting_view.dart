@@ -60,6 +60,15 @@ class SettingPage extends GetView<SettingController> {
               },
               child: const Text('退出登录'),
             ),
+
+            Divider(),
+
+            ElevatedButton(
+              onPressed: () {
+                Get.offAllNamed(AppRoutes.Device_List);
+              },
+              child: const Text('设备列表'),
+            ),
             // CupertinoButton(
             //     color: CupertinoColors.activeBlue,
             //     child: Text("退出登录"),
