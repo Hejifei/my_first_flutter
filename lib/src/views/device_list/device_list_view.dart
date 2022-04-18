@@ -6,8 +6,6 @@ import 'package:myapp/src/views/device_list/components/no_data.dart';
 import 'package:myapp/src/views/device_list/components/tips_view.dart';
 import 'package:myapp/src/views/device_list/device_list_controller.dart';
 
-
-
 class DeviceListPage extends StatelessWidget {
   const DeviceListPage({Key? key}) : super(key: key);
 
