@@ -67,34 +67,37 @@ class DeviceListPage extends StatelessWidget {
             ),
           ],
         ),
-        body:Container(
-          padding: const EdgeInsets.fromLTRB(16, 5, 16, 10),
+        body: Scrollbar(
           child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              
-              children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: double.infinity,
-                    minHeight: MediaQuery.of(context).size.height * 0.8,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      SizedBox(
-                        child: TipsViewWidget(),
-                        height: 260,
+            SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(16, 5, 16, 10),
+              child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: double.infinity,
+                        minHeight: MediaQuery.of(context).size.height * 0.75,
                       ),
-                      NoDataWidget(),
-                    ],
-                  ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          SizedBox(
+                            child: TipsViewWidget(),
+                            height: 260,
+                          ),
+                          NoDataWidget(),
+                        ],
+                      ),
+                    ),
+                    const ConnectButtonWidget(),
+                  ],
                 ),
-                const ConnectButtonWidget(),
-              ],
-            ),
-          )
+            )
         ),
+      ),
     );
   }
 }
